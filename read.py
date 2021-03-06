@@ -1,12 +1,18 @@
+import time
+import progressbar
+
 count = 0
 data = []
+bar = progressbar.ProgressBar(max_value=1000000)
 with open("reviews.txt", "r") as f: 
 	for line in f:
 		data.append(line)
 		count += 1
-		if count % 100000 == 0:
-			print(len(data))
+		bar.update(count)
+		
 print("收尋資料總共為", len(data), "筆資料")
+end_time_1 = time.time()
+
 number = 0
 for count_1 in data:
 	number = number + len(count_1)
@@ -30,9 +36,11 @@ new = [d for d in data if len(d) < 100] # 設立一個New的資料夾,把所有�
 print(len(new))
 
 
+# 文字計數
+start_time = time.time() # 計算運行時間
 wc = {} # 設立一個字典w
 for d in data: # 把整筆資料data放入字列表d中(變成一筆一筆留言)
-	words = d.split(' ') # 把留言之間的空格清除後,放入新的列表words中(變成全部都是獨立的文字)
+	words = d.split() # 把留言之間的空格清除後,放入新的列表words中(變成全部都是獨立的文字)
 	for word in words:  # 依序把留言中的所有文字,一個一個字放入word列表中
 		if word in wc: # 如果在字典中提到其中一個字
 			wc[word] += 1 # 那就計算提到的字
@@ -41,7 +49,8 @@ for d in data: # 把整筆資料data放入字列表d中(變成一筆一筆留言
 for word in wc:
 	if wc[word] > 1000000:
 		print(word, wc[word])
-
+end_time = time.time()
+print('統計資料筆數總共花了', end_time - start_time, '秒')
 while True:
 	word = input('請問你要查甚麼字')
 	if word =='q':
@@ -51,6 +60,7 @@ while True:
 	else:
 		print('這個字沒有出現過喔')
 print('謝謝使用查詢功能')
+
 
 
 
