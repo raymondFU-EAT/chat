@@ -40,12 +40,12 @@ print(len(new))
 start_time = time.time() # 計算運行時間
 wc = {} # 設立一個字典w
 for d in data: # 把整筆資料data放入字列表d中(變成一筆一筆留言)
-	words = d.split() # 把留言之間的空格清除後,放入新的列表words中(變成全部都是獨立的文字)
+	words = d.split() # 把留言(字串)之間的空格清除後,放入新的words(清單)中(變成全部都是獨立的文字)
 	for word in words:  # 依序把留言中的所有文字,一個一個字放入word列表中
 		if word in wc: # 如果在字典中提到其中一個字
-			wc[word] += 1 # 那就計算提到的字
+			wc[word] += 1 # 那就計算字典中出現的字
 		else:             # 如果該字沒有在字典中
-			wc[word] = 1  # 那就新增提到的字,並且提到的數量計為1
+			wc[word] = 1  # 那就新增提到的字,並且把新增的字計為1
 for word in wc:
 	if wc[word] > 1000000:
 		print(word, wc[word])
