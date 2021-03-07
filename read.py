@@ -11,7 +11,6 @@ with open("reviews.txt", "r") as f:
 		bar.update(count)
 		
 print("收尋資料總共為", len(data), "筆資料")
-end_time_1 = time.time()
 
 number = 0
 for count_1 in data:
